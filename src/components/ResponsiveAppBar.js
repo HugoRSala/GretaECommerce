@@ -1,30 +1,4 @@
-/* const Navbar = () => {
-    return (
 
-        <div className="flex flex-row justify-around content-center bg-green-700 text-white h-16 text-center shadow-2xl">
-            <div className="flex items-center">
-                <span>LOGO</span>
-            </div>
-            <div className="flex items-center">
-                <ul className="flex flex-row gap-4">
-                    <li><a href="{#}">Nosotros</a></li>
-                    <li><a href="{#}">Categorias</a></li>
-                    <li><a href="{#}">Ventas</a></li>
-                    <li><a href="{#}">Contacto</a></li>
-                </ul>
-            </div>
-            <div className="flex items-center">
-                <ul className="flex flex-row gap-4">
-                    <li><a className="border p-2 rounded-md hover:bg-green-600 transition-colors" href="{#}">Iniciar Sesión</a></li>
-                    <li><a className="border p-2 rounded-md bg-white text-black hover:bg-green-700 transition-colors hover:text-white" href="{#}">Registrarse</a></li>
-                </ul>
-            </div>
-        </div>
-    )
-
-
-}
-export default Navbar */
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -38,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import CartWidget from './CartWidget';
 
 const pages = ['Nosotros', 'Productos', 'Contacto'];
 const settings = ['Perfil', 'Cuenta', 'Logout'];
@@ -63,10 +37,10 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="success">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+       
           <Typography
             variant="h6"
             noWrap
@@ -121,7 +95,8 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          
+          
           <Typography
             variant="h5"
             noWrap
@@ -140,6 +115,7 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
+          
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -150,8 +126,12 @@ const ResponsiveAppBar = () => {
                 {page}
               </Button>
             ))}
+          
+          
+          
+          
           </Box>
-
+          
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -179,10 +159,16 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+             
             </Menu>
+            <CartWidget></CartWidget>
           </Box>
+          
+          
         </Toolbar>
+        
       </Container>
+      
     </AppBar>
   );
 };
