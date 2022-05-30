@@ -61,7 +61,7 @@ const products = [
         name: "Asics Running Noosa",
         stock: 30,
         cost: 30500,
-        description: "Asics running profesional maraton",
+        description: "Asics running profesional maraton, indicadas para corredores de élite, fabricadas con la materia prima de más alta gama del mercado.",
         image:"https://universoventura.vteximg.com.br/arquivos/ids/194170-500-500/Zapatillas-Asics-GlideRide-2-Lite-Show-Running-Hombre-French-Blue-Lite-Show-1011B166-400.jpg?v=637834930799470000"
     }
 
