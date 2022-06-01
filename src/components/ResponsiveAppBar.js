@@ -13,8 +13,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from './CartWidget';
+import { Link } from 'react-router-dom'
 
-const pages = ['Nosotros', 'Productos', 'Contacto'];
+const pages = [
+          <Link to='./category/1'>Nike</Link>,
+          <Link to='./category/2'>Adidas</Link>, 
+          <Link to='./category/3'>Reebok</Link>, 
+          <Link to='./category/4'>Asics</Link>
+        ];
 const settings = ['Perfil', 'Cuenta', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -45,7 +51,7 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -56,7 +62,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            <Link to='/'>LOGO</Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -127,9 +133,7 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           
-          
-          
-          
+
           </Box>
           
           <Box sx={{ flexGrow: 0 }}>

@@ -1,6 +1,7 @@
 const products = [
     {
         id: 1,
+        categoryId: 1,
         name: "Nike Revolution 6",
         stock: 120,
         cost: 20500,
@@ -9,6 +10,7 @@ const products = [
     },
     {
         id: 3,
+        categoryId: 1,
         name: "Nike Air Zoom Pegasus",
         stock: 50,
         cost: 22500,
@@ -17,6 +19,7 @@ const products = [
     },
     {
         id: 4,
+        categoryId: 1,
         name: "Nike MD Runner 2",
         stock: 290,
         cost: 17900,
@@ -25,6 +28,7 @@ const products = [
     },
     {
         id: 5,
+        categoryId: 2,
         name: "Adidas Forum Low",
         stock: 92,
         cost: 31500,
@@ -33,6 +37,7 @@ const products = [
     },
     {
         id: 6,
+        categoryId: 2,
         name: "Adidas Force 32",
         stock: 100,
         cost: 24800,
@@ -41,6 +46,7 @@ const products = [
     },
     {
         id: 7,
+        categoryId: 3,
         name: "Reebok Nanoflex TR",
         stock: 40,
         cost: 27800,
@@ -49,6 +55,7 @@ const products = [
     },
     {
         id: 8,
+        categoryId: 3,
         name: "Reebok Classics",
         stock: 300,
         cost: 14500,
@@ -58,6 +65,7 @@ const products = [
     
     {
         id: 10,
+        categoryId: 4,
         name: "Asics Running Noosa",
         stock: 30,
         cost: 30500,
