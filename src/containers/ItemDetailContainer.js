@@ -9,6 +9,7 @@ const ItemDetailContainer = () => {
     const [data, setData] = useState({})
     const {id} = useParams();
 
+
     useEffect(()=>{
         customFetch(2000, products.find(item => item.id === parseInt(id)))
         .then(res => setData(res))
@@ -16,6 +17,7 @@ const ItemDetailContainer = () => {
     },[])
 
     return (
+        
         <ItemDetail item={data} />
     )
 }

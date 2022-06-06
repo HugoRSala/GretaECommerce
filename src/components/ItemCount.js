@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react"
+import { Button } from "@mui/material";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
-    const [contador, setContador] = useState(initial)
+const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
+    const [contador, setContador] = useState(0)
 
     const increment = () => {
         if (contador < stock) {
@@ -28,7 +29,12 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                 <span className="w-8 h-8 flex justify-center items-center">{contador}</span>
                 <button className="w-8 h-8 rounded-md" onClick={increment}>+</button>
             </div>
-            <button className="w-44 h-8 text-white bg-black rounded-md shadow-2xl" onClick={agregar}>agregar</button>
+            {
+                stock && contador
+                ? <Button variant="contained" color="primary" onClick={() => 
+                    onAdd(contador)}>Agregar</Button>
+                : <Button variant="contained" disabled>Agregar</Button>
+            }
         </div>
     )
 }
