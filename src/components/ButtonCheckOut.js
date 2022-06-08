@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 const ButtonCheckOut = () => {
     return (
-        <Link to='/cart'><Button className="bg-red">CheckOut</Button> /</Link>
+        <Link to='/cart'><Button variant="contained" color="error">CheckOut</Button></Link>
     )
 }
 

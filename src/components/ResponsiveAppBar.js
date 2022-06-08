@@ -165,7 +165,7 @@ const ResponsiveAppBar = () => {
               ))}
              
             </Menu>
-            <CartWidget></CartWidget>
+            <Link to='/cart'><CartWidget /></Link>
           </Box>
           
           

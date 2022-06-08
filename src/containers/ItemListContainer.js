@@ -26,7 +26,6 @@ const ItemListContainer = ({saludo}) => {
         <>
         <p>{saludo}</p>
         <ItemList items={data}/>
-        <ItemCount stock={5} initial={1}  />
         </>
     )
 }

@@ -19,9 +19,7 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
 
         }
     }
-    const agregar = () => {
-        alert(`se agregaron ${contador} productos al carrito`)
-    }
+    
     return (
         <div className="flex gap-8 mt-4">
             <div className="flex ml-4 text-xl font-semibold">
