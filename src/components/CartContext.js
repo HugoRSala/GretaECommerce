@@ -17,8 +17,11 @@ const CartContextProvider = ({children}) => {
             stockItem: item.stock,
             qtyItem: qty,
         }])
-
-        : duplicate.qtyItem += qty;
+        
+        : 
+        setCartList([...cartList])
+        duplicate.qtyItem += qty;
+        
     }
     const removeItem = (id) => {
         let rest = cartList.filter(item => item.idItem =! id)
@@ -28,8 +31,32 @@ const CartContextProvider = ({children}) => {
     const deleteCart = () => {
         setCartList([])
     }
+    //traemos item por id
+    const calcTotalPerItem = (idItem) => {
+        let indice = cartList.map(item => item.idItem).indexOf(idItem)
+        return cartList[indice].priceItem * cartList[indice].qtyItem;
+    }
+    //a cada item le aplicamos calcTotalPerItem
+    const calcSubTotal = () => {
+        let totalUnitario = cartList.map(item => calcTotalPerItem(item.idItem))
+        return totalUnitario.reduce((acc, act) => acc + act)
+    }
+
+    const calcTaxes = () => {
+        return calcSubTotal() * 0.21
+
+    }
+
+    const calcTotal = () => {
+        return calcSubTotal() + calcTaxes()
+    }   
+     const calcItemsQty = () => {
+        let qtys = cartList.map(item => item.qtyItem)
+        return qtys.reduce(((ant, acc)=>ant + acc), 0);
+    }
+
     return (
-        <CartContext.Provider value={{cartList, addToCart, removeItem, deleteCart}}>
+        <CartContext.Provider value={{cartList, addToCart, removeItem, deleteCart, calcTotalPerItem, calcSubTotal, calcTaxes, calcTotal, calcItemsQty }}>
             {children}
         </CartContext.Provider>
     )
