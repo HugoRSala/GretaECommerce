@@ -39,7 +39,7 @@ const CartContextProvider = ({children}) => {
     //a cada item le aplicamos calcTotalPerItem
     const calcSubTotal = () => {
         let totalUnitario = cartList.map(item => calcTotalPerItem(item.idItem))
-        return totalUnitario.reduce((acc, act) => acc + act)
+        return totalUnitario.reduce(((acc, act) => acc + act), 0)
     }
 
     const calcTaxes = () => {
