@@ -16,10 +16,10 @@ import CartWidget from './CartWidget';
 import { Link } from 'react-router-dom'
 
 const pages = [
-          <Link to='./category/1'>Nike</Link>,
-          <Link to='./category/2'>Adidas</Link>, 
-          <Link to='./category/3'>Reebok</Link>, 
-          <Link to='./category/4'>Asics</Link>
+          <Link to='/category/1'>Nike</Link>,
+          <Link to='/category/2'>Adidas</Link>, 
+          <Link to='/category/3'>Reebok</Link>, 
+          <Link to='/category/4'>Asics</Link>
         ];
 const settings = ['Perfil', 'Cuenta', 'Logout'];
 
