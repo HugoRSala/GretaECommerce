@@ -2,9 +2,56 @@ import { useContext } from 'react'
 import { CartContext } from './CartContext'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { collection, serverTimestamp, doc, setDoc, updateDoc, increment } from 'firebase/firestore'
+import db from '../utils/fireBaseConfig'
+
 
 const Cart = () => {
     const test = useContext(CartContext)
+    
+    const createOrder = () => {
+        let itemsForDB = test.cartList.map(item => ({
+            id: item.idItem,
+            price: item.priceItem,
+            qty: item.qtyItem,
+            title: item.titleItem,
+
+        }) 
+           )
+        let order = {
+            buyer: {
+                email: 'leo@messi.com',
+                name: 'Leo Messi',
+                phone: '123456789'
+            },
+            date: serverTimestamp(),
+            items: itemsForDB,
+
+            total:test.calcTotal() 
+
+        }
+        
+        
+        const createOrderInFirestore = async () => {
+            const newOrderRef = doc(collection(db, "orders"))
+            await setDoc(newOrderRef, order)
+            return newOrderRef
+        }
+        createOrderInFirestore()
+        .then(res => alert('your ID order is ' + res.id))
+        .catch(err => console.log(err));
+        
+        //actualización de stock
+        test.cartList.forEach(async (item) => {
+            const itemRef = doc(db, "products", item.idItem)
+           await updateDoc(itemRef, {
+               stock: increment(-item.qtyItem)
+           }) 
+        });
+        
+        //borrar carrito al comprar        
+        test.deleteCart()
+    }
     return (
         <>
             <div>
@@ -63,6 +110,8 @@ const Cart = () => {
                         <span className='text-lg'>impuestos: ${test.calcTaxes()} </span>
                         <span className='text-lg'>Total: ${test.calcTotal()} </span>
                     </div>
+                    <Button onClick={createOrder}>Ir a Pagar</Button>
+                    
                 </div>
             </div>
         </>
