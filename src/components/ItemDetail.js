@@ -2,14 +2,17 @@ import React, { useContext, useState } from "react";
 import ButtonCheckOut from "./ButtonCheckOut";
 import { CartContext } from "./CartContext";
 import ItemCount from "./ItemCount";
-
+import Swal from 'sweetalert2'
 
 const ItemDetail = ({ item }) => {
     const [itemCount, setItemCount] = useState(0);
     const test = useContext(CartContext)
 
     const onAdd = (qty) => {
-        alert(`Seleccionaste ${qty} items`)
+        Swal.fire({
+            text: `Seleccionaste ${qty} items`,
+            confirmButtonColor: '#000000'
+        })
         setItemCount(qty)
         test.addToCart(item, qty)
 

@@ -14,13 +14,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from './CartWidget';
 import { Link } from 'react-router-dom'
-
+/* import { createTheme, ThemeProvider } from '@mui/material/styles';
+ */
 const pages = [
-          <Link to='/category/1'>Nike</Link>,
-          <Link to='/category/2'>Adidas</Link>, 
-          <Link to='/category/3'>Reebok</Link>, 
-          <Link to='/category/4'>Asics</Link>
-        ];
+  <Link to='/category/1'>Nike</Link>,
+  <Link to='/category/2'>Adidas</Link>,
+  <Link to='/category/3'>Reebok</Link>,
+  <Link to='/category/4'>Asics</Link>
+];
 const settings = ['Perfil', 'Cuenta', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -42,16 +43,34 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+
+  /* const theme = createTheme({
+    status: {
+      danger: '#e53e3e',
+    },
+    palette: {
+      primary: {
+        main: '#000000',
+        darker: '#000000',
+      },
+      neutral: {
+        main: '#64748B',
+        contrastText: '#fff',
+      },
+    },
+  }); */
+
   return (
-    <AppBar position="static" color="primary">
+    
+    <AppBar position = "static" color = "primary" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-       
+
           <Typography
             variant="h6"
             noWrap
             component="a"
-            
+
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -101,8 +120,8 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          
-          
+
+
           <Typography
             variant="h5"
             noWrap
@@ -121,7 +140,7 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
-          
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -132,10 +151,10 @@ const ResponsiveAppBar = () => {
                 {page}
               </Button>
             ))}
-          
+
 
           </Box>
-          
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -163,17 +182,18 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-             
+
             </Menu>
             <Link to='/cart'><CartWidget /></Link>
           </Box>
-          
-          
+
+
         </Toolbar>
-        
+
       </Container>
-      
-    </AppBar>
+
+      </AppBar >
+    /* </ThemeProvider> */
   );
 };
 export default ResponsiveAppBar;

@@ -4,6 +4,7 @@ import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { collection, serverTimestamp, doc, setDoc, updateDoc, increment } from 'firebase/firestore'
 import db from '../utils/fireBaseConfig'
+import Swal from 'sweetalert2'
 
 
 const Cart = () => {
@@ -38,7 +39,9 @@ const Cart = () => {
             return newOrderRef
         }
         createOrderInFirestore()
-        .then(res => alert('your ID order is ' + res.id))
+        .then(res => Swal.fire({
+            text:'your ID order is ' + res.id,
+            confirmButtonColor: '#000000'}))
         .catch(err => console.log(err));
         
         //actualización de stock

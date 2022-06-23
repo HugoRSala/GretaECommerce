@@ -14,13 +14,19 @@ const ItemListContainer = ({ saludo }) => {
         firebaseFetch(idCategory)
             .then(res => setData(res))
             .catch(err => console.log(err))
-}, [idCategory]);
+    }, [idCategory]);
 
-return (
-    <>
-         <ItemList items={data} />
-    </>
-)
+    useEffect(() => {
+        return (() => {
+            setData([]);
+        })
+    }, []);
+
+    return (
+        <>
+            <ItemList items={data} />
+        </>
+    )
 }
 
 export default ItemListContainer;
