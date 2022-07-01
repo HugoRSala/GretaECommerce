@@ -16,12 +16,7 @@ const ItemListContainer = ({ saludo }) => {
             .catch(err => console.log(err))
     }, [idCategory]);
 
-    useEffect(() => {
-        return (() => {
-            setData([]);
-        })
-    }, []);
-
+    
     return (
         <>
             <ItemList items={data} />

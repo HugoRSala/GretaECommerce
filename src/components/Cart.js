@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 const Cart = () => {
     const test = useContext(CartContext)
-    
+
     const createOrder = () => {
         let itemsForDB = test.cartList.map(item => ({
             id: item.idItem,
@@ -17,8 +17,8 @@ const Cart = () => {
             qty: item.qtyItem,
             title: item.titleItem,
 
-        }) 
-           )
+        })
+        )
         let order = {
             buyer: {
                 email: 'leo@messi.com',
@@ -28,30 +28,31 @@ const Cart = () => {
             date: serverTimestamp(),
             items: itemsForDB,
 
-            total:test.calcTotal() 
+            total: test.calcTotal()
 
         }
-        
-        
+
+
         const createOrderInFirestore = async () => {
             const newOrderRef = doc(collection(db, "orders"))
             await setDoc(newOrderRef, order)
             return newOrderRef
         }
         createOrderInFirestore()
-        .then(res => Swal.fire({
-            text:'your ID order is ' + res.id,
-            confirmButtonColor: '#000000'}))
-        .catch(err => console.log(err));
-        
+            .then(res => Swal.fire({
+                text: 'your ID order is ' + res.id,
+                confirmButtonColor: '#000000'
+            }))
+            .catch(err => console.log(err));
+
         //actualización de stock
         test.cartList.forEach(async (item) => {
             const itemRef = doc(db, "products", item.idItem)
-           await updateDoc(itemRef, {
-               stock: increment(-item.qtyItem)
-           }) 
+            await updateDoc(itemRef, {
+                stock: increment(-item.qtyItem)
+            })
         });
-        
+
         //borrar carrito al comprar        
         test.deleteCart()
     }
@@ -64,7 +65,7 @@ const Cart = () => {
                     {
 
                         test.cartList.length > 0 ?
-                            <Button onClick={test.deleteCart}>Borrar todo</Button>
+                            <Button variant="contained" onClick={test.deleteCart}>Borrar todo</Button>
                             : <div />
                     }
                 </div>
@@ -95,8 +96,9 @@ const Cart = () => {
                                             <span className='text-lg'>Total: </span>
                                             <span className='text-xl'>${test.calcTotalPerItem(item.idItem)}</span>
                                         </div>
-
-                                        <Button onClick={() => test.removeItem(item.idItem)}>x</Button>
+                                        <div className='m-4'>
+                                            <Button variant="contained" onClick={() => test.removeItem(item.idItem)}>x</Button>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -109,12 +111,21 @@ const Cart = () => {
                 <div className='w-2/6 mr-4 flex flex-col p-4 border-2 rounded-md shadow-xl mt-4 h-96'>
                     <h1 className='text-center text-xl'>CheckOut</h1>
                     <div className='flex flex-col h-full justify-around'>
-                        <span className='text-lg'>subtotal: ${test.calcSubTotal()} </span>
-                        <span className='text-lg'>impuestos: ${test.calcTaxes()} </span>
-                        <span className='text-lg'>Total: ${test.calcTotal()} </span>
+                        <div className='flex flex-row justify-around'>
+                            <span className='text-lg'>subtotal:</span>
+                            <span className='text-2xl'>$ {test.calcSubTotal()} </span>
+                        </div>
+                        <div className='flex flex-row justify-around'>
+                            <span className='text-lg'>impuestos:</span>
+                            <span className='text-2xl'>$ {test.calcTaxes()} </span>
+                        </div>
+                        <div className='flex flex-row justify-around'>
+                            <span className='text-lg'>Total:</span>
+                            <span className='text-4xl text-center'>$ {test.calcTotal()} </span>
+                        </div>
                     </div>
-                    <Button onClick={createOrder}>Ir a Pagar</Button>
-                    
+                    <Button variant="contained" color='error' onClick={createOrder}>Ir a Pagar</Button>
+
                 </div>
             </div>
         </>

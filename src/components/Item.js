@@ -1,6 +1,5 @@
 
 import { DescriptionOutlined, LocalOfferOutlined } from '@mui/icons-material';
-/* import { Divider } from '@mui/material'; */
 import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 
