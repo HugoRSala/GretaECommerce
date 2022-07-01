@@ -32,7 +32,7 @@ const Cart = () => {
 
         }
 
-
+        if (test.cartList.length > 0) { 
         const createOrderInFirestore = async () => {
             const newOrderRef = doc(collection(db, "orders"))
             await setDoc(newOrderRef, order)
@@ -55,6 +55,7 @@ const Cart = () => {
 
         //borrar carrito al comprar        
         test.deleteCart()
+    }
     }
     return (
         <>
@@ -124,7 +125,12 @@ const Cart = () => {
                             <span className='text-4xl text-center'>$ {test.calcTotal()} </span>
                         </div>
                     </div>
+                    {
+                    test.cartList.length > 0 ?
                     <Button variant="contained" color='error' onClick={createOrder}>Ir a Pagar</Button>
+                    : <Button variant="contained" disabled>Ir a Pagar</Button>
+                    }
+                    
 
                 </div>
             </div>
